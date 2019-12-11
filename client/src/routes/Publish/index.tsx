@@ -306,17 +306,17 @@ class Publish extends Component<{}, PublishState> {
         }
 
         try {
-            // new Account('0x45Ad84cDA849B81b9a20C5EA3768135450bCf088', ocean)
-            
             const asset = await this.context.ocean.assets
                                     .create(newAsset, account[0])
                 .next((publishingStep: number) => 
                     this.setState({ publishingStep })
                 )
 
+            // TODO: allow selection from contract registry
             console.log("Transfering asset ownership to market")
-            const marketAddress = '0x45Ad84cDA849B81b9a20C5EA3768135450bCf088'
-            await this.context.ocean.assets.transferOwnership(asset.id, marketAddress)
+            const marketAddress = '0x2bA32d94ad95a3643C57CC9cf781fE4adA07C347'
+            const transferResult = await this.context.ocean.assets.transferOwnership(asset.id, marketAddress)
+            console.log("Transfer result:", transferResult)
 
             this.setState({
                 publishedDid: asset.id,
