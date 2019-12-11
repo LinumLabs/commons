@@ -1,5 +1,5 @@
 import React, { ChangeEvent, Component, FormEvent } from 'react'
-import { Logger, File, Account } from '@oceanprotocol/squid'
+import { Logger, File } from '@oceanprotocol/squid'
 import Web3 from 'web3'
 import Route from '../../components/templates/Route'
 import Form from '../../components/atoms/Form/Form'
@@ -310,12 +310,13 @@ class Publish extends Component<{}, PublishState> {
             
             const asset = await this.context.ocean.assets
                                     .create(newAsset, account[0])
-                .next((publishingStep: number) =>
+                .next((publishingStep: number) => 
                     this.setState({ publishingStep })
-		    console.log("Transfering asset ownership to market")
-		    const marketAddress = '0x45Ad84cDA849B81b9a20C5EA3768135450bCf088'
-		    await this.context.ocean.assets.transferOwnership(asset.id, marketAddress)
                 )
+
+            console.log("Transfering asset ownership to market")
+            const marketAddress = '0x45Ad84cDA849B81b9a20C5EA3768135450bCf088'
+            await this.context.ocean.assets.transferOwnership(asset.id, marketAddress)
 
             this.setState({
                 publishedDid: asset.id,
