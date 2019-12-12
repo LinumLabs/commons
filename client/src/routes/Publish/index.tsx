@@ -314,8 +314,8 @@ class Publish extends Component<{}, PublishState> {
 
             // TODO: allow selection from contract registry
             console.log("Transfering asset ownership to market")
-            const marketAddress = '0x2bA32d94ad95a3643C57CC9cf781fE4adA07C347'
-            const transferResult = await this.context.ocean.assets.transferOwnership(asset.id, marketAddress)
+            const bondingCurveAddress = '0xb8c6a144c2320A04A3ceec6bE8F24636D99c5cC8'
+            const transferResult = await this.context.ocean.assets.transferOwnership(asset.id, bondingCurveAddress)
             console.log("Transfer result:", transferResult)
 
             this.setState({
