@@ -26,6 +26,7 @@ interface PublishState {
     type?: AssetType
     copyrightHolder?: string
     categories?: string
+    marketAddress?: string
 
     currentStep?: number
     publishingStep?: number
@@ -34,16 +35,6 @@ interface PublishState {
     publishedDid?: string
     publishingError?: string
     validationStatus?: any
-}
-
-if (allowPricing) {
-    ;(steps as any)[0].fields.price = {
-        label: 'Price',
-        placeholder: 'Price in Ocean tokens',
-        type: 'string',
-        required: true,
-        help: 'Enter the price of assets in Ocean tokens.'
-    }
 }
 
 class Publish extends Component<{}, PublishState> {
@@ -60,6 +51,7 @@ class Publish extends Component<{}, PublishState> {
         license: '',
         copyrightHolder: '',
         categories: '',
+        marketAddress: '',
 
         currentStep: 1,
         isPublishing: false,
@@ -130,6 +122,7 @@ class Publish extends Component<{}, PublishState> {
             license: '',
             copyrightHolder: '',
             categories: '',
+            marketAddress: '',
             isPublishing: false,
             isPublished: false,
             publishingStep: 0,
@@ -314,8 +307,7 @@ class Publish extends Component<{}, PublishState> {
 
             // TODO: allow selection from contract registry
             console.log("Transfering asset ownership to market")
-            const bondingCurveAddress = '0xb8c6a144c2320A04A3ceec6bE8F24636D99c5cC8'
-            const transferResult = await this.context.ocean.assets.transferOwnership(asset.id, bondingCurveAddress)
+            const transferResult = await this.context.ocean.assets.transferOwnership(asset.id, this.state.marketAddress)
             console.log("Transfer result:", transferResult)
 
             this.setState({

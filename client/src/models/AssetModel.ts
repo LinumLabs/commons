@@ -10,7 +10,8 @@ const AssetModel: MetaData = {
         author: '',
         license: '',
         price: '',
-        files: []
+        files: [],
+        marketAddress: ''
     },
     additionalInformation: {
         description: '',

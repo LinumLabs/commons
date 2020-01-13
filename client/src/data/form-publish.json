@@ -17,6 +17,33 @@
           "type": "text",
           "required": true,
           "help": "Provide one or multiple urls to your data set files."
+        },
+        "marketAddress": {
+          "label": "Beneficiary Bonding Curve",
+          "help": "Provide the contract address of the bonded market DAO that will act as the beneficiary.",
+          "type": "select",
+          "required": true,
+          "options": [
+            "0x6E02Fa9A3b60d794787a229B0325F460cd080AF1"
+          ]
+        },
+        "pricing": {
+          "label": "Pricing",
+          "placeholder": "Price in Ocean tokens",
+          "type": "select",
+          "required": true,
+          "help": "Choose the pricing model that should be applied to the dataset.",
+          "options": [
+              "Dynamic",
+              "Static"
+          ]
+        },
+        "price": {
+          "label": "Price",
+          "placeholder": "Price in Ocean tokens",
+          "type": "string",
+          "required": true,
+          "help": "Enter the price of assets in Ocean tokens."
         }
       }
     },
