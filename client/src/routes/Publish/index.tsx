@@ -339,7 +339,7 @@ class Publish extends Component<{}, PublishState> {
                 {market => (
                     <Route
                         title="Publish"
-                        description={`Publish a new data set into the Ocean Protocol ${market.network} Network.`}
+                        description={`Publish a new data set into the Molecule Ocean Protocol Network.`}
                     >
                         <Content>
                             <Progress
